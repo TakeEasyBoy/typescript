@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script language="JavaScript" src="http://code.jquery.com/jquery-1.11.0.js"></script>
+</head>
+<body>
+		<!-- <div id="show"></div>
+		<input type="text" id="message" name="" value="" placeholder="">
+		<input type="text" id="name" value="" placeholder="昵称;">
+		<a href="javascript:void(0)" onclick="send()">发送</a>
+		<a href="javascript:void(0)" onclick="exit()">退出</a> -->
+	<!-- 对象拷贝 -->
+	<!-- <script>
+		let obj = {};
+		let filistDataObj = {
+			item1:{
+				name:"folder1文件夹",
+				icon:"/icon/folder.png",
+				is_choosed:false,
+
+			},
+			item2:{
+				name:"folder2文件夹",
+				icon:"/icon/folder.png",
+				is_choosed:false,
+				children: {
+					item:{
+						name:"name1",
+						icon:"/icon/cloud.png",
+						is_choosed:false,
+					},
+					item2:{
+						name:"name1",
+						icon:"/icon/cloud.png",
+						is_choosed:false,
+					},
+					item3:{
+						name:"name1",
+						icon:"/icon/cloud.png",
+						is_choosed:false,
+					},
+					item4:{
+						name:"name1",
+						icon:"/icon/cloud.png",
+						is_choosed:false,
+						children: {
+							item:{
+								name:"name1",
+								icon:"/icon/cloud.png",
+								is_choosed:false,
+							},
+							item2:{
+								name:"name1",
+								icon:"/icon/cloud.png",
+								is_choosed:false,
+							},
+							item3:{
+								name:"name1",
+								icon:"/icon/cloud.png",
+								is_choosed:false,
+							},
+							item4:{
+								name:"name1",
+								icon:"/icon/cloud.png",
+								is_choosed:false,
+								children: {
+					item:{
+						name:"name1",
+						icon:"/icon/cloud.png",
+						is_choosed:false,
+					},
+					item2:{
+						name:"name1",
+						icon:"/icon/cloud.png",
+						is_choosed:false,
+					},
+					item3:{
+						name:"name1",
+						icon:"/icon/cloud.png",
+						is_choosed:false,
+					},
+					item4:{
+						name:"name1",
+						icon:"/icon/cloud.png",
+						is_choosed:false,
+						children: {
+							item:{
+								name:"name1",
+								icon:"/icon/cloud.png",
+								is_choosed:false,
+							},
+							item2:{
+								name:"name1",
+								icon:"/icon/cloud.png",
+								is_choosed:false,
+							},
+							item3:{
+								name:"name1",
+								icon:"/icon/cloud.png",
+								is_choosed:false,
+							},
+							item4:{
+								name:"name1",
+								icon:"/icon/cloud.png",
+								is_choosed:false,
+
+							}
+						},
+					}
+				},
+
+							}
+						},
+					}
+				},
+
+			},
+			item3:{
+				name:"folder3文件夹",
+				icon:"/icon/folder.png",
+				is_choosed:false,
+				children:{
+					item:{
+						name:"name1",
+						icon:"/icon/cloud.png",
+						is_choosed:false,
+					},
+					item2:{
+						name:"name1",
+						icon:"/icon/cloud.png",
+						is_choosed:false,
+					},
+					item3:{
+						name:"name1",
+						icon:"/icon/cloud.png",
+						is_choosed:false,
+					},
+					item4:{
+						name:"name1",
+						icon:"/icon/cloud.png",
+						is_choosed:false,
+					}
+				},
+			},
+			item4:{
+				name:"folder4文件夹",
+				icon:"/icon/folder.png",
+				is_choosed:false,
+
+			},
+			item5:{
+				name:"folder5文件夹",
+				icon:"/icon/folder.png",
+				is_choosed:false,
+				item:{
+					name:"name1",
+					icon:"/icon/cloud.png",
+					is_choosed:false,
+				}
+			},
+
+		};
+		Object.defineProperty(obj,'property',{
+			value:555,
+			enumerable:true,
+			configurable:true,
+			writable:true
+		})
+		let dataArr = [];
+		for (const key in filistDataObj) {
+			if (filistDataObj.hasOwnProperty(key)) {
+				const element = filistDataObj[key];
+				dataArr.push(element)
+			}
+		}
+		let hahah = Object.assign({},filistDataObj)
+		let xixi = JSON.parse(JSON.stringify(filistDataObj))
+		hahah.item2.children.item4.children.item4.name="高老庄的美好时代"
+		console.log("hahah -- origin",filistDataObj)
+		xixi.item2.children.item4.children.item4.name="高老庄的美好时代嘘嘘"
+		console.log("assing",hahah);
+		console.log("json",filistDataObj)
+		console.log("origin",filistDataObj)
+		// console.log(Object.keys(filistDataObj));
+		// console.log(dataArr);
+	</script> -->
+	<!-- <script>
+		function deepCopy(obj){
+			let result = {},						//用于保存新的对象
+				keys = Object.keys(obj),			//用于保存所有的key
+				key = null,
+				tempValue = null,
+				length = keys.length ;
+			for(let i = 0; i < length;i++){
+				key = keys[i];
+				tempValue = obj[key]
+				if(tempValue && typeof tempValue === 'object'){
+					result[key] = deepCopy(tempValue)
+				}else{
+					result[key] = tempValue
+				}
+			}
+			return result;
+		}
+		let obj = {
+			data:111,
+			x:function(val){
+				console.log("Im a func");
+			},
+			y:undefined,
+			deepdata:{
+				a:"aaa",
+				b:"bbb"
+			}
+		}
+		let copydata = deepCopy(obj)
+		console.log(obj);
+		copydata.data = 222;
+		console.log(copydata);
+	</script> -->
+	<!-- defineproperty的使用 -->
+	<!-- <script>
+		let obj = {
+			data:111,
+			x:function(){
+				console.log(this.data);
+			}
+		};
+		let jj = {}
+		let a = 55
+		Object.defineProperty(jj,'b',{
+			get:function(){
+				return a + 5;
+			},
+			set:function(newValue){
+				newValue = a
+			}
+		})
+		console.log(jj);
+	</script> -->
+	<!-- 数字过千增加 ',' -->
+	<!-- <script type="text/javascript">
+		var ws = new WebSocket("ws://localhost:3000?t=test");
+		ws.onopen = function() {
+			console.log("连接状态", ws);
+			$("#show").html("连接状态;" + ws.readyState + "</br>");
+			console.log("open");
+			ws.open("start");
+		};
+		ws.onmessage = function(evt) {
+			// console.log(evt.data)
+			// alert(evt.data);
+			$("#show").append(evt.data + "</br>");
+		};
+		ws.onclose = function(evt) {
+			console.log("WebSocketClosed!");
+			console.log(evt);
+		};
+		ws.onerror = function(evt) {
+			console.log("WebSocketError!");
+		};
+
+		function send() {
+			var msg = $("#message").val();
+			var key = $("#token").val();
+			var name = $("#name").val();
+			var str = "{name:'" + name + "',msg:'" + msg + "',key:'" + key + "'}";
+			console.log("发送", str);
+			ws.send(str);
+		};
+
+		function exit() {
+			var r = ws.close();
+			console.log("退出", r);
+		}
+	 </script> -->
+	<!-- <script>
+		function transNum(num){
+			let newStr = '',
+				numArr = Number(num).toString().split('.'),
+				integer = numArr[0],
+				floatpart = numArr[1],
+				length = integer.length;
+			if(length > 3 ){
+				integer.split('').reverse().forEach((ele,index)=>{
+					newStr += ele
+					if((index+1) % 3 == 0 && length != index + 1){
+						newStr += ','
+					}
+				})
+				return floatpart == undefined ? newStr.split('').reverse().join('') : newStr.split('').reverse().join('')+'.'+floatpart
+			}
+			return num;
+		}
+		console.log(transNum(123456));
+		console.log(transNum("123456.22"));
+	</script> -->
+	<!-- <script>
+		function Ohayo(name,age){
+			this.age = age;
+			this.name = name;
+			this.sayHee = function(){
+				console.log(`hello ${this.name}`);
+			}
+		}
+		Ohayo.prototype.heihei = function(){
+			console.log("你大爷!");
+		}
+		let a = new Ohayo('qian',28);
+		a.huhu = function(){
+			console.log(`huhu,${this.name},you r ${this.age} years`)
+		}
+		a.sayHee();
+		console.log(a);
+		let b = new Ohayo('zhu',30);
+		a.huhu.call(b,'zhu',30)
+		let c = Object.create(a)
+		console.log(c);   //属性都在__proto__上面,这是基于原型链的继承
+	</script> -->
+	<!-- 正则 -->
+	<!-- <script>
+		let text = "this daay is a sunny aday,ayayaa man";
+		let reg = /(..)ay(.)/g;  //()用于分组,访问分组内容可通过RegExp.$来访问
+		if(reg.test(text)){
+			console.log(RegExp.$1);
+			console.log(RegExp.$2);
+		}
+	</script> -->
+	<!-- 原型链 -->
+	<!-- <script>
+// 构造函数
+function SuperType(){
+	this.prop = 1;
+}
+// 原型定义方法
+SuperType.prototype.getValue = function(){
+	return this.prop;
+}
+// 创建另外一个函数,
+function SubType(){
+	this.subprop = 2;
+}
+//将Subtype的原型通过Supertype new出来,此时的Subtype的constructor将指向SuperType,因为此举重新改写了原型,
+// 所以Subtype的构造函数就会指向SuperType
+SubType.prototype = new SuperType();
+SubType.prototype.getSubValue = function(){
+	return this.subprop;
+}
+//new一个实例
+let instance = new SubType();
+console.log(instance);
+	</script> -->
+</body>
+	<script src="./hello.js"></script>
+</html>
