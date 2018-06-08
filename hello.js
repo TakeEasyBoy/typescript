@@ -14,7 +14,7 @@ function area1(shape) {
     return `Im ${shape.name} with area ${area} cm!`;
 }
 // 调用的时候需要将接口所有的参数进行赋值,否则会报错
-console.log(area1({ name: "正方形", width: 120, height: 200, color: 'blue' }));
+console.log(area1({ name: '正方形', width: 120, height: 200, color: 'blue' }));
 // 箭头函数表达式,同样作为绑定当前this作用域的功能
 var shape = {
     name: '正方形',
@@ -71,7 +71,7 @@ class Animal {
 class Pig extends Animal {
     constructor(name) { super(name); }
     move(distance = 66) {
-        console.log("Pig------------");
+        console.log('Pig------------');
         super.move(distance);
     }
 }
@@ -97,7 +97,7 @@ class CPoint {
     }
 }
 getX(new CPoint(0, 0)); // Ok, fields match
-// getX({ x: 0, y: 0, color: "red" });  // Extra fields Ok
+// getX({ x: 0, y: 0, color: 'red' });  // Extra fields Ok
 // getX({ x: 0 });  // Error: supplied parameter does not match./
 /**
  * 基础类型
@@ -133,10 +133,10 @@ console.log(f, s, rest);
 function printlable(labelObj) {
     console.log(labelObj.label);
 }
-let myObj = { size: 12, label: "我是labbel" };
+let myObj = { size: 12, label: '我是labbel' };
 printlable(myObj);
 function createSqe(config) {
-    let newSquare = { color: "white", area: 100 };
+    let newSquare = { color: 'white', area: 100 };
     if (config.color) {
         // Error: Property 'collor' does not exist on type 'SquareConfig'
         newSquare.color = config.collor; // Type-checker会报错 SquareConfig中没有collor属性
@@ -146,6 +146,73 @@ function createSqe(config) {
     }
     return newSquare;
 }
-let squearOptions = { colorr: 'red', width: 120, color: "1231" };
+let squearOptions = { colorr: 'red', width: 120, color: '1231' };
 let mysqr = createSqe(squearOptions);
+console.log(mysqr);
+let mysearch;
+mysearch = function (src, sub) {
+    let result = src.search(sub);
+    if (result == -1) {
+        return false;
+    }
+    else {
+        return true;
+    }
+};
+console.log(mysearch('nishizhu', 'zhu'));
+let arr;
+arr = ["1", "2"];
+console.log(arr[0]);
+let cocktail = {};
+cocktail.type = "cock";
+cocktail.fly = false;
+cocktail.kg = 300;
+console.log(cocktail);
+/**
+ * 存取器
+ */
+let passcode = "secret passcode";
+class Employee {
+    get fullName() {
+        return this._fullName;
+    }
+    set fullName(newName) {
+        if (passcode && passcode == "secret passcode") {
+            this._fullName = newName;
+        }
+        else {
+            console.log("Error: Unauthorized update of employee!");
+        }
+    }
+}
+let employee = new Employee();
+employee.fullName = "Bob Smith";
+if (employee.fullName) {
+    alert(employee.fullName);
+}
+/**
+ * 类-构造函数
+ */
+class Greeter {
+    greet() {
+        if (this.greeting) {
+            return "Hello, " + this.greeting;
+        }
+        else {
+            return Greeter.standardGreeting;
+        }
+    }
+}
+Greeter.standardGreeting = "Hello, there";
+let greeter1;
+greeter1 = new Greeter();
+console.log(greeter1.greet());
+/**
+ * 泛型  函数返回的类型 == 输入的类型
+ */
+function identity(arg) {
+    return arg;
+}
+let output = identity("asfs");
+let output1 = identity(123);
 //# sourceMappingURL=hello.js.map

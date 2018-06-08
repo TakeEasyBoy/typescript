@@ -23,7 +23,7 @@ function area1(shape:Shape) {
     return `Im ${shape.name} with area ${area} cm!`
 }
 // 调用的时候需要将接口所有的参数进行赋值,否则会报错
-console.log(area1({name:"正方形",width:120,height:200,color:'blue'}));
+console.log(area1({name:'正方形',width:120,height:200,color:'blue'}));
 
 // 箭头函数表达式,同样作为绑定当前this作用域的功能
 var shape = {
@@ -82,7 +82,7 @@ console.log(squear.shoutout());
  class Pig extends Animal{
 	 constructor(name:string){super(name)}
 	 move(distance = 66){
-		 console.log("Pig------------");
+		 console.log('Pig------------');
 		 super.move(distance)
 	 }
  }
@@ -124,9 +124,9 @@ console.log(op.ONE);
 
 // declare var $: JQueryStatic;
 
-// $.get("http://mysite.org/divContent",
+// $.get('http://mysite.org/divContent',
 //       function (data: string) {
-//           $("div").text(data);
+//           $('div').text(data);
 //       }
 // );
 interface Point {
@@ -149,7 +149,7 @@ class CPoint {
 
 getX(new CPoint(0, 0));  // Ok, fields match
 
-// getX({ x: 0, y: 0, color: "red" });  // Extra fields Ok
+// getX({ x: 0, y: 0, color: 'red' });  // Extra fields Ok
 
 // getX({ x: 0 });  // Error: supplied parameter does not match./
 
@@ -183,11 +183,11 @@ console.log(f,s,rest);
 function printlable(labelObj:{label:string}){
 	console.log(labelObj.label);
 }
-let myObj = {size:12,label:"我是labbel"}
+let myObj = {size:12,label:'我是labbel'}
 printlable(myObj);
 
 /**
- * 额外的属性检查
+ * 接口-额外的属性检查
  */
 interface SquareConfig {
 	color?:string;
@@ -195,7 +195,7 @@ interface SquareConfig {
 	[property:string]:any; // 如果没有生什么一个任意数量的其他类型 Type-checker会报错 SquareConfig中没有collor属性
 }
 function createSqe(config:SquareConfig):{color:string;area:number}{
-    let newSquare = {color: "white", area: 100};
+    let newSquare = {color: 'white', area: 100};
     if (config.color) {
         // Error: Property 'collor' does not exist on type 'SquareConfig'
         newSquare.color = config.collor;  // Type-checker会报错 SquareConfig中没有collor属性
@@ -205,5 +205,114 @@ function createSqe(config:SquareConfig):{color:string;area:number}{
     }
     return newSquare;
 }
-let squearOptions = {colorr:'red',width:120,color:"1231"};
+let squearOptions = {colorr:'red',width:120,color:'1231'};
 let mysqr = createSqe(squearOptions)
+console.log(mysqr);
+
+/**
+ * 接口-函数类型,定义了函数的返回值类型,如果没有返回值,则可以使用void进行类型申明
+ */
+
+interface SearchFunc{
+	(source:string,substring:string):boolean;
+}
+let mysearch:SearchFunc;
+mysearch = function(src,sub) {
+	let result = src.search(sub);
+	if(result == -1){
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+console.log(mysearch('nishizhu','zhu'));
+/**
+ * 接口--可索引的类型
+ * 数字索引的返回值必须是字符串索引返回值类型的子类型
+ */
+interface NumberDictionary {
+	[index: number]: string;
+	// length: string;    // 可以，length是number类型
+	// name: string;       // 错误，`name`的类型不是索引类型的子类型
+}
+let arr:NumberDictionary;
+arr = ["1","2"];
+console.log(arr[0]);
+/**
+ * 接口-类类型
+ */
+/**
+ * 接口-扩展接口
+ * 一个接口可以继承多个接口，创建出多个接口的合成接口。
+ */
+interface Animal {
+	type:string
+}
+interface eggAnimal {
+	fly:boolean
+}
+interface Cock extends Animal,eggAnimal{
+	kg:number
+}
+let cocktail = <Cock>{};
+cocktail.type = "cock";
+cocktail.fly = false;
+cocktail.kg = 300;
+console.log(cocktail);
+
+/**
+ * 存取器
+ */
+let passcode = "secret passcode";
+
+class Employee {
+    private _fullName: string;
+
+    get fullName(): string {
+        return this._fullName;
+    }
+
+    set fullName(newName: string) {
+        if (passcode && passcode == "secret passcode") {
+            this._fullName = newName;
+        }
+        else {
+            console.log("Error: Unauthorized update of employee!");
+        }
+    }
+}
+
+let employee = new Employee();
+employee.fullName = "Bob Smith";
+if (employee.fullName) {
+    alert(employee.fullName);
+}
+/**
+ * 类-构造函数
+ */
+class Greeter {
+    static standardGreeting = "Hello, there";
+    greeting: string;
+    greet() {
+        if (this.greeting) {
+            return "Hello, " + this.greeting;
+        }
+        else {
+            return Greeter.standardGreeting;
+        }
+    }
+}
+
+let greeter1: Greeter;
+greeter1 = new Greeter();
+console.log(greeter1.greet());
+
+/**
+ * 泛型  函数返回的类型 == 输入的类型
+ */
+function identity<T>(arg: T): T {
+    return arg;
+}
+let output = identity<string>("asfs");
+let output1 = identity(123)

@@ -16,13 +16,13 @@ module.exports = {
             "error",
             "windows"
         ],
-        "quotes": [
-            "error",
-            "double"
-        ],
         "semi": [
             "error",
             "always"
+        ],
+        "no-console":[
+            "error",
+            { allow: ["log","warn", "error"] }
         ]
     }
 };
